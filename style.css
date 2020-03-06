@@ -25,10 +25,3 @@
     width:90%;
     margin: auto auto;
   }
-  
-  .leaflet-control-zoom-in{
-    background-image: url("img/zoom_in.png");
-  }
-  .leaflet-control-zoom-out{
-    background-image: url("img/zoom_out.png");
-  }
