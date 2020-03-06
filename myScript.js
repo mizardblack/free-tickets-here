@@ -46,24 +46,28 @@ function setupMap() {
     marker.bindPopup("<b>Flushing Ave</b><br>Theres no security camera here.").openPopup();
 }
 
-//edit button
-// var edit_button = document.getElementById("edit");
 
-function create(e) {
+function mapClicked(e) {
     let create_button = document.getElementById("create");
+    let edit_button = document.getElementById("edit");
 
     if (create_button.checked) {
-        let no_camera = L.icon({
-            iconUrl: 'img/nocamera.png',
-            iconSize: [21, 27],
-            iconAnchor: [11, 27],
-            popupAnchor: [-3, -76],
-        });
-        L.marker([e.latlng.lat, e.latlng.lng], { icon: no_camera }).addTo(mymap);
+        addNoCameraPin(e.latlng.lat, e.latlng.lng);
     }
 }
 
+function addNoCameraPin(lat, lng) {
+    let no_camera = L.icon({
+        iconUrl: 'img/nocamera.png',
+        iconSize: [21, 27],
+        iconAnchor: [11, 27],
+        popupAnchor: [-3, -76],
+    });
+    L.marker([lat, lng], { icon: no_camera }).addTo(mymap);
+}
+
+
 setupMap();
-mymap.on('click', create);
+mymap.on('click', mapClicked);
 
 
