@@ -14,33 +14,35 @@ function onMapClick(e) {
 mymap.on('click', onMapClick);
 */
 
-var mymap = L.map('mapid').setView([40.734121, -73.987255], 13);
+// set up initial map state
+function setupMap() {
+    var mymap = L.map('mapid').setView([40.734121, -73.987255], 13);
 
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1
-}).addTo(mymap);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+            '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
+    }).addTo(mymap);
 
-//pin
-var marker = L.marker([40.700065, -73.950176]).addTo(mymap)
-    .bindTooltip("my tooltip text").openTooltip();;
+    //pin
+    var marker = L.marker([40.700065, -73.950176]).addTo(mymap)
+        .bindTooltip("my tooltip text").openTooltip();;
 
-//markers group
-var USQ = L.marker([40.734641, -73.990259]).bindPopup(`This is Union Square.`),
-    school = L.marker([40.734706, -73.994637]).bindPopup(`This is my school.`),
-    DD = L.marker([40.71755, -73.963373]).bindPopup(`This is Daddy's home.`),
-    home = L.marker([40.731700, -73.992405]).bindPopup(`This is my home.`);
+    //markers group
+    var USQ = L.marker([40.734641, -73.990259]).bindPopup(`This is Union Square.`),
+        school = L.marker([40.734706, -73.994637]).bindPopup(`This is my school.`),
+        DD = L.marker([40.71755, -73.963373]).bindPopup(`This is Daddy's home.`),
+        home = L.marker([40.731700, -73.992405]).bindPopup(`This is my home.`);
 
-L.layerGroup([USQ, school, DD, home]).addTo(mymap);
+    L.layerGroup([USQ, school, DD, home]).addTo(mymap);
 
-
-//popups
-marker.bindPopup("<b>Flushing Ave</b><br>Theres no security camera here.").openPopup();
+    //popups
+    marker.bindPopup("<b>Flushing Ave</b><br>Theres no security camera here.").openPopup();
+}
 
 //edit button
 // var edit_button = document.getElementById("edit");
@@ -59,6 +61,7 @@ function create(e) {
     }
 }
 
+setupMap();
 mymap.on('click', create);
 
 
