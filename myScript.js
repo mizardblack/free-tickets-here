@@ -15,6 +15,12 @@ mymap.on('click', onMapClick);
 */
 
 var mymap = L.map('mapid');
+var storage = [
+    // test data
+    { lat: 40.734641, lng: -73.990259 },
+    { lat: 40.734706, lng: -73.994637 },
+    { lat: 40.731700, lng: -73.992405 }
+];
 
 // set up initial map state
 function setupMap() {
@@ -52,11 +58,27 @@ function mapClicked(e) {
     let edit_button = document.getElementById("edit");
 
     if (create_button.checked) {
-        addNoCameraPin(e.latlng.lat, e.latlng.lng);
+        drawNoCameraPin(e.latlng.lat, e.latlng.lng);
+        storage.push({ lat: e.latlng.lat, lng: e.latlng.lng }); //add pin location into storage
     }
 }
 
-function addNoCameraPin(lat, lng) {
+function saveClicked() {
+    console.log("save button clicked");
+}
+
+function loadClicked() {
+    console.log("load button clicked");
+    // for (let i = 0; i <= storage.length; i++) {
+    //     const loc = storage[i];
+    // }
+    for (const loc of storage) {
+        drawNoCameraPin(loc.lat, loc.lng);
+    }
+}
+
+/** Draw pin on map. */
+function drawNoCameraPin(lat, lng) {
     let no_camera = L.icon({
         iconUrl: 'img/nocamera.png',
         iconSize: [21, 27],
@@ -69,5 +91,5 @@ function addNoCameraPin(lat, lng) {
 
 setupMap();
 mymap.on('click', mapClicked);
-
-
+document.getElementById("saveButton").addEventListener("click", saveClicked);
+document.getElementById("loadButton").addEventListener("click", loadClicked); 
