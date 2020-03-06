@@ -15,6 +15,8 @@ mymap.on('click', onMapClick);
 */
 
 var mymap = L.map('mapid');
+var cameraPins = L.layerGroup().addTo(mymap);
+
 var storage = [
     // test data
     { lat: 40.734641, lng: -73.990259 },
@@ -46,7 +48,8 @@ function setupMap() {
         DD = L.marker([40.71755, -73.963373]).bindPopup(`This is Daddy's home.`),
         home = L.marker([40.731700, -73.992405]).bindPopup(`This is my home.`);
 
-    L.layerGroup([USQ, school, DD, home]).addTo(mymap);
+    let places = L.layerGroup([USQ, school, DD, home]);
+    places.addTo(mymap);
 
     //popups
     marker.bindPopup("<b>Flushing Ave</b><br>Theres no security camera here.").openPopup();
@@ -69,6 +72,7 @@ function saveClicked() {
 
 function loadClicked() {
     console.log("load button clicked");
+    cameraPins.clearLayers();
     // for (let i = 0; i <= storage.length; i++) {
     //     const loc = storage[i];
     // }
@@ -85,7 +89,9 @@ function drawNoCameraPin(lat, lng) {
         iconAnchor: [11, 27],
         popupAnchor: [-3, -76],
     });
-    L.marker([lat, lng], { icon: no_camera }).addTo(mymap);
+    // L.marker([lat, lng], { icon: no_camera }).addTo(mymap);
+    let marker = L.marker([lat, lng], { icon: no_camera });
+    marker.addTo(cameraPins);
 }
 
 
