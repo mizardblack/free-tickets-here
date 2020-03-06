@@ -17,7 +17,7 @@ mymap.on('click', onMapClick);
 var mymap = L.map('mapid');
 var cameraPins = L.layerGroup().addTo(mymap);
 
-var storage = [
+var cameraLocations = [
     // test data
     { lat: 40.734641, lng: -73.990259 },
     { lat: 40.734706, lng: -73.994637 },
@@ -62,7 +62,7 @@ function mapClicked(e) {
 
     if (create_button.checked) {
         drawNoCameraPin(e.latlng.lat, e.latlng.lng);
-        storage.push({ lat: e.latlng.lat, lng: e.latlng.lng }); //add pin location into storage
+        cameraLocations.push({ lat: e.latlng.lat, lng: e.latlng.lng });
     }
 }
 
@@ -73,10 +73,10 @@ function saveClicked() {
 function loadClicked() {
     console.log("load button clicked");
     cameraPins.clearLayers();
-    // for (let i = 0; i <= storage.length; i++) {
-    //     const loc = storage[i];
+    // for (let i = 0; i <= cameraLocations.length; i++) {
+    //     const loc = cameraLocations[i];
     // }
-    for (const loc of storage) {
+    for (const loc of cameraLocations) {
         drawNoCameraPin(loc.lat, loc.lng);
     }
 }
