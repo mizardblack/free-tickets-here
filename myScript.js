@@ -16,13 +16,7 @@ mymap.on('click', onMapClick);
 
 var mymap = L.map('mapid');
 var cameraPins = L.layerGroup().addTo(mymap);
-
-var cameraLocations = [
-    // test data
-    { lat: 40.734641, lng: -73.990259 },
-    { lat: 40.734706, lng: -73.994637 },
-    { lat: 40.731700, lng: -73.992405 }
-];
+var cameraLocations = [];
 
 // set up initial map state
 function setupMap() {
@@ -68,11 +62,22 @@ function mapClicked(e) {
 
 function saveClicked() {
     console.log("save button clicked");
+    localStorage.setItem("freetickets.cameraLocations", JSON.stringify(cameraLocations));
 }
 
 function loadClicked() {
     console.log("load button clicked");
+
+    // clear existing camera pins displayed on map
     cameraPins.clearLayers();
+
+    // load from storage
+    let rawStorage = localStorage.getItem("freetickets.cameraLocations");
+    if (rawStorage != null) {
+        cameraLocations = JSON.parse(rawStorage);
+    }
+
+    // draw all camera pins on map
     // for (let i = 0; i <= cameraLocations.length; i++) {
     //     const loc = cameraLocations[i];
     // }
