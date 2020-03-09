@@ -117,3 +117,7 @@ mymap.on('click', mapClicked);
 document.getElementById("clearButton").addEventListener("click", clearAll);
 // document.getElementById("saveButton").addEventListener("click", save);
 // document.getElementById("loadButton").addEventListener("click", load); 
+
+L.easyButton('fas fa-trash-alt', function () {
+    clearAll();
+}).addTo(mymap);
