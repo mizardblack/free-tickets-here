@@ -13,8 +13,6 @@
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
-  <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script> -->
 </head>
 
 <body>
@@ -24,16 +22,15 @@
         <div id="title">
           <h1>WANT FREE TICKETS ?</h1>
         </div>
-        <div id="mapid">
-          <span id="button-container">
-            <input type="checkbox" id="createToggle"> <!-- invisible checkbox -->
-            <label for="createToggle" id="createButton">
-              <i class="fas fa-map-pin fa-2x"></i>
-            </label>
-            <button id="clearButton"><i class="fas fa-trash-alt fa-2x"></i></button>
-            <!-- <button id="saveButton"><i class="fas fa-save"></i></button> -->
-            <!-- <button id="loadButton"><i class="fas fa-file-download"></i></button> -->
-          </span>
+        <div id="mapid"></div>
+        <div id="button-container">
+          <input type="checkbox" id="createToggle"> <!-- invisible checkbox -->
+          <label for="createToggle" id="createButton">
+            <i class="fas fa-map-pin"></i>
+          </label>
+          <button id="clearButton"><i class="fas fa-trash-alt"></i></button>
+          <!-- <button id="saveButton"><i class="fas fa-save"></i></button> -->
+          <!-- <button id="loadButton"><i class="fas fa-file-download"></i></button> -->
         </div>
       </div>
     </div>

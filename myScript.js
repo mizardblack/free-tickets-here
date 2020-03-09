@@ -47,12 +47,11 @@ function setupMap() {
         tileSize: 512,
         zoomOffset: -1
     }).addTo(mymap);
-
 }
 
 
 function mapClicked(e) {
-    let create_button = document.getElementById("create");
+    let create_button = document.getElementById("createToggle");
     // let edit_button = document.getElementById("edit");
 
     if (create_button.checked) {
@@ -118,5 +117,3 @@ mymap.on('click', mapClicked);
 document.getElementById("clearButton").addEventListener("click", clearAll);
 // document.getElementById("saveButton").addEventListener("click", save);
 // document.getElementById("loadButton").addEventListener("click", load); 
-
-
