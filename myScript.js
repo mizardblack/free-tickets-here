@@ -34,6 +34,29 @@ var mymap = L.map('mapid');
 var cameraPins = L.layerGroup().addTo(mymap);
 var cameraLocations = [];
 
+// function popupMessageText() {
+//     if (navigator.language = "zh-CN") {
+//         return `这个地铁站没有监控摄像头。`;
+//     }
+//     return `This station doesn't have security cameras.`;
+// }
+
+const textPhrases = {
+    "zh": {
+        "delete-prompt": "爱上",
+        "popup-text": "这个地铁站没有监控摄像头。"
+    },
+    "en": {
+        "delete-prompt": "foo",
+        "popup-text": "This station doesn't have security cameras."
+    }
+}
+
+function lookupText(key) {
+    let lang = navigator.language.split("-")[0]; // get language code without region
+    return textPhrases[lang][key];
+}
+
 // set up initial map state
 function setupMap() {
     mymap.setView([40.734121, -73.987255], 13);
@@ -124,7 +147,7 @@ function drawNoCameraPin(lat, lng) {
         popupAnchor: [2, -36],
     });
     // L.marker([lat, lng], { icon: no_camera }).addTo(mymap);
-    let marker = L.marker([lat, lng], { icon: no_camera }).bindPopup(`This station doesn't have security cameras.`);
+    let marker = L.marker([lat, lng], { icon: no_camera }).bindPopup(lookupText("popup-text"));
     marker.addTo(cameraPins);
 }
 
