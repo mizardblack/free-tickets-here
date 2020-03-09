@@ -52,14 +52,16 @@ function setupMap() {
 
 function mapClicked(e) {
     let create_button = document.getElementById("createToggle");
-    // let edit_button = document.getElementById("edit");
 
     if (create_button.checked) {
         drawNoCameraPin(e.latlng.lat, e.latlng.lng);
         cameraLocations.push({ lat: e.latlng.lat, lng: e.latlng.lng });
         save();
     }
+
+
 }
+
 
 function save() {
     localStorage.setItem("freetickets.cameraLocations", JSON.stringify(cameraLocations));
@@ -118,6 +120,38 @@ document.getElementById("clearButton").addEventListener("click", clearAll);
 // document.getElementById("saveButton").addEventListener("click", save);
 // document.getElementById("loadButton").addEventListener("click", load); 
 
+// L.easyButton('fas fa-map-pin', function () {
+//     mapClicked();
+// }).addTo(mymap);
 L.easyButton('fas fa-trash-alt', function () {
     clearAll();
 }).addTo(mymap);
+
+
+
+var toggle = L.easyButton({
+    states: [{
+        stateName: 'on',
+        icon: 'fas fa-map-pin',
+        title: 'active adding pins',
+        onClick: function (control) {
+            mymap.on('click', function (e) {
+                if (toggle.state() == 'on') {
+                    console.log(e.latlng, toggle.state());
+                    drawNoCameraPin(e.latlng.lat, e.latlng.lng);
+                    cameraLocations.push({ lat: e.latlng.lat, lng: e.latlng.lng });
+                    save();
+                }
+            });
+            control.state('off');
+        }
+    }, {
+        stateName: 'off',
+        icon: 'fa-undo',
+        title: 'inactive adding pins',
+        onClick: function (control) {
+            control.state('on');
+        }
+    }]
+});
+toggle.addTo(mymap);
