@@ -40,9 +40,9 @@ function setupMap() {
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        attribution: 'map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
             '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            'imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox/streets-v11',
         tileSize: 512,
         zoomOffset: -1
@@ -50,16 +50,42 @@ function setupMap() {
 }
 
 
+//create clearAll button
+L.easyButton('fas fa-trash-alt', function () {
+    clearAll();
+}).addTo(mymap);
+
+//creat addPin button
+var toggle = L.easyButton({
+    states: [{
+        stateName: 'on',
+        icon: 'fas fa-map-pin fa-lg',
+        title: 'active adding pins',
+        onClick: function (control) {
+            mapClicked();
+            control.state('off');
+        }
+    }, {
+        stateName: 'off',
+        icon: 'fa-undo fa-lg',
+        title: 'inactive adding pins',
+        onClick: function (control) {
+            control.state('on');
+        }
+    }]
+});
+toggle.addTo(mymap);
+
+
 function mapClicked(e) {
-    let create_button = document.getElementById("createToggle");
-
-    if (create_button.checked) {
-        drawNoCameraPin(e.latlng.lat, e.latlng.lng);
-        cameraLocations.push({ lat: e.latlng.lat, lng: e.latlng.lng });
-        save();
-    }
-
-
+    mymap.on('click', function (e) {
+        if (toggle.state() == 'on') {
+            console.log(e.latlng, toggle.state());
+            drawNoCameraPin(e.latlng.lat, e.latlng.lng);
+            cameraLocations.push({ lat: e.latlng.lat, lng: e.latlng.lng });
+            save();
+        }
+    });
 }
 
 
@@ -115,43 +141,4 @@ function drawEachPin() {
 
 setupMap();
 load();
-mymap.on('click', mapClicked);
-document.getElementById("clearButton").addEventListener("click", clearAll);
-// document.getElementById("saveButton").addEventListener("click", save);
-// document.getElementById("loadButton").addEventListener("click", load); 
 
-// L.easyButton('fas fa-map-pin', function () {
-//     mapClicked();
-// }).addTo(mymap);
-L.easyButton('fas fa-trash-alt', function () {
-    clearAll();
-}).addTo(mymap);
-
-
-
-var toggle = L.easyButton({
-    states: [{
-        stateName: 'on',
-        icon: 'fas fa-map-pin',
-        title: 'active adding pins',
-        onClick: function (control) {
-            mymap.on('click', function (e) {
-                if (toggle.state() == 'on') {
-                    console.log(e.latlng, toggle.state());
-                    drawNoCameraPin(e.latlng.lat, e.latlng.lng);
-                    cameraLocations.push({ lat: e.latlng.lat, lng: e.latlng.lng });
-                    save();
-                }
-            });
-            control.state('off');
-        }
-    }, {
-        stateName: 'off',
-        icon: 'fa-undo',
-        title: 'inactive adding pins',
-        onClick: function (control) {
-            control.state('on');
-        }
-    }]
-});
-toggle.addTo(mymap);
