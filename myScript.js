@@ -52,7 +52,7 @@ function setupMap() {
 
 function mapClicked(e) {
     let create_button = document.getElementById("create");
-    let edit_button = document.getElementById("edit");
+    // let edit_button = document.getElementById("edit");
 
     if (create_button.checked) {
         drawNoCameraPin(e.latlng.lat, e.latlng.lng);
@@ -66,8 +66,6 @@ function save() {
 }
 
 function load() {
-    // clear existing camera pins displayed on map
-    cameraPins.clearLayers();
 
     // load from storage
     let rawStorage = localStorage.getItem("freetickets.cameraLocations");
@@ -75,13 +73,14 @@ function load() {
         cameraLocations = JSON.parse(rawStorage);
     }
 
-    // draw all camera pins on map
-    // for (let i = 0; i <= cameraLocations.length; i++) {
-    //     const loc = cameraLocations[i];
-    // }
-    for (const loc of cameraLocations) {
-        drawNoCameraPin(loc.lat, loc.lng);
-    }
+    drawEachPin();
+}
+
+//clear all pins
+function clearAll() {
+    cameraLocations = [];
+    drawEachPin();
+    save();
 }
 
 /** Draw pin on map. */
@@ -97,9 +96,22 @@ function drawNoCameraPin(lat, lng) {
     marker.addTo(cameraPins);
 }
 
+// draw all camera pins on map (update interface)
+function drawEachPin() {
+    // clear existing camera pins displayed on map
+    cameraPins.clearLayers();
+
+    // for (let i = 0; i <= cameraLocations.length; i++) {
+    //     const loc = cameraLocations[i];
+    // }
+    for (const loc of cameraLocations) {
+        drawNoCameraPin(loc.lat, loc.lng);
+    }
+}
 
 setupMap();
 load();
 mymap.on('click', mapClicked);
-document.getElementById("saveButton").addEventListener("click", save);
-document.getElementById("loadButton").addEventListener("click", load); 
+document.getElementById("clearButton").addEventListener("click", clearAll);
+// document.getElementById("saveButton").addEventListener("click", save);
+// document.getElementById("loadButton").addEventListener("click", load); 
