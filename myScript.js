@@ -124,7 +124,7 @@ function drawNoCameraPin(lat, lng) {
         popupAnchor: [2, -36],
     });
     // L.marker([lat, lng], { icon: no_camera }).addTo(mymap);
-    let marker = L.marker([lat, lng], { icon: no_camera }).bindPopup(`This station doesn't have secuirty cameras.`);
+    let marker = L.marker([lat, lng], { icon: no_camera }).bindPopup(`This station doesn't have security cameras.`);
     marker.addTo(cameraPins);
 }
 
