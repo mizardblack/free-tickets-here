@@ -40,15 +40,6 @@ body{
   left:130px;
 }
 
-#createToggle{
-  display: none;
-}
-#createButton{
-  cursor: pointer;
-}
-#createToggle:checked ~ #createButton {
-  color:red;
-}
 
 h1{
   /* width:60%; */

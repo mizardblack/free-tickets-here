@@ -58,19 +58,22 @@ L.easyButton('fas fa-trash-alt', function () {
 //creat addPin button
 var toggle = L.easyButton({
     states: [{
+        stateName: 'off',
+        icon: 'fas fa-map-pin fa-lg',
+        title: 'inactive adding pins',
+        id: 'createPinToggle',
+        onClick: function () {
+            this.state('on');
+            this.button.style.color = "red";
+        }
+    }, {
         stateName: 'on',
         icon: 'fas fa-map-pin fa-lg',
         title: 'active adding pins',
-        onClick: function (control) {
+        onClick: function () {
             mapClicked();
-            control.state('off');
-        }
-    }, {
-        stateName: 'off',
-        icon: 'fa-undo fa-lg',
-        title: 'inactive adding pins',
-        onClick: function (control) {
-            control.state('on');
+            this.button.style.color = "grey";
+            this.state('off');
         }
     }]
 });
