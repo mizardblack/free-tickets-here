@@ -42,14 +42,21 @@ body{
 
 
 h1{
-  /* width:60%; */
   font-size: 45px;
   text-align:center;
   margin: 0;
   background-color: rgb(49, 49, 49);
   color:rgb(255, 217, 0);
   padding:30px;
-  border-radius: 70px 70px 0 0;
+  border-radius: 85px 85px 0 0;
+}
+
+h1:hover{
+  font-size: 0;
+}
+h1:hover::before{
+  font-size: 27px;
+  content: attr(data-hover);
 }
 
 h3{
