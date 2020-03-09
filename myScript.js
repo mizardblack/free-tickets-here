@@ -47,6 +47,7 @@ function setupMap() {
         tileSize: 512,
         zoomOffset: -1
     }).addTo(mymap);
+
 }
 
 
@@ -117,3 +118,5 @@ mymap.on('click', mapClicked);
 document.getElementById("clearButton").addEventListener("click", clearAll);
 // document.getElementById("saveButton").addEventListener("click", save);
 // document.getElementById("loadButton").addEventListener("click", load); 
+
+
