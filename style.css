@@ -55,7 +55,7 @@ h1:hover{
   font-size: 0;
 }
 h1:hover::before{
-  font-size: 27px;
+  font-size: 30px;
   content: attr(data-hover);
 }
 
