@@ -47,6 +47,8 @@ function setupMap() {
         tileSize: 512,
         zoomOffset: -1
     }).addTo(mymap);
+
+    mymap.on('click', mapClicked);
 }
 
 
@@ -71,7 +73,6 @@ var toggle = L.easyButton({
         icon: 'fas fa-map-pin fa-lg',
         title: 'active adding pins',
         onClick: function () {
-            mapClicked();
             this.button.style.color = "grey";
             this.state('off');
         }
@@ -81,14 +82,12 @@ toggle.addTo(mymap);
 
 
 function mapClicked(e) {
-    mymap.on('click', function (e) {
-        if (toggle.state() == 'on') {
-            console.log(e.latlng, toggle.state());
-            drawNoCameraPin(e.latlng.lat, e.latlng.lng);
-            cameraLocations.push({ lat: e.latlng.lat, lng: e.latlng.lng });
-            save();
-        }
-    });
+    if (toggle.state() == 'on') {
+        console.log(e.latlng, toggle.state());
+        drawNoCameraPin(e.latlng.lat, e.latlng.lng);
+        cameraLocations.push({ lat: e.latlng.lat, lng: e.latlng.lng });
+        save();
+    }
 }
 
 
