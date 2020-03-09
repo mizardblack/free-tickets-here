@@ -57,17 +57,15 @@ function mapClicked(e) {
     if (create_button.checked) {
         drawNoCameraPin(e.latlng.lat, e.latlng.lng);
         cameraLocations.push({ lat: e.latlng.lat, lng: e.latlng.lng });
+        save();
     }
 }
 
-function saveClicked() {
-    console.log("save button clicked");
+function save() {
     localStorage.setItem("freetickets.cameraLocations", JSON.stringify(cameraLocations));
 }
 
-function loadClicked() {
-    console.log("load button clicked");
-
+function load() {
     // clear existing camera pins displayed on map
     cameraPins.clearLayers();
 
@@ -101,6 +99,7 @@ function drawNoCameraPin(lat, lng) {
 
 
 setupMap();
+load();
 mymap.on('click', mapClicked);
-document.getElementById("saveButton").addEventListener("click", saveClicked);
-document.getElementById("loadButton").addEventListener("click", loadClicked); 
+document.getElementById("saveButton").addEventListener("click", save);
+document.getElementById("loadButton").addEventListener("click", load); 
