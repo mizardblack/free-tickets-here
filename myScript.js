@@ -78,9 +78,11 @@ function load() {
 
 //clear all pins
 function clearAll() {
-    cameraLocations = [];
-    drawEachPin();
-    save();
+    if (confirm(`Are you sure that you wanna clear all the pins?`)) {
+        cameraLocations = [];
+        drawEachPin();
+        save();
+    }
 }
 
 /** Draw pin on map. */
