@@ -12,6 +12,22 @@ function onMapClick(e) {
 }
 
 mymap.on('click', onMapClick);
+
+//markers group
+var USQ = L.marker([40.734641, -73.990259]).bindPopup(`This is Union Square.`),
+    school = L.marker([40.734706, -73.994637]).bindPopup(`This is my school.`),
+    DD = L.marker([40.71755, -73.963373]).bindPopup(`This is Daddy's home.`),
+    home = L.marker([40.731700, -73.992405]).bindPopup(`This is my home.`);
+
+let places = L.layerGroup([USQ, school, DD, home]);
+places.addTo(mymap);
+
+//tip
+var marker = L.marker([40.700065, -73.950176]).addTo(mymap)
+    .bindTooltip("my tooltip text").openTooltip();
+
+//popups
+marker.bindPopup("<b>Flushing Ave</b><br>Theres no security camera here.").openPopup();
 */
 
 var mymap = L.map('mapid');
@@ -31,22 +47,6 @@ function setupMap() {
         tileSize: 512,
         zoomOffset: -1
     }).addTo(mymap);
-
-    //pin
-    var marker = L.marker([40.700065, -73.950176]).addTo(mymap)
-        .bindTooltip("my tooltip text").openTooltip();;
-
-    //markers group
-    var USQ = L.marker([40.734641, -73.990259]).bindPopup(`This is Union Square.`),
-        school = L.marker([40.734706, -73.994637]).bindPopup(`This is my school.`),
-        DD = L.marker([40.71755, -73.963373]).bindPopup(`This is Daddy's home.`),
-        home = L.marker([40.731700, -73.992405]).bindPopup(`This is my home.`);
-
-    let places = L.layerGroup([USQ, school, DD, home]);
-    places.addTo(mymap);
-
-    //popups
-    marker.bindPopup("<b>Flushing Ave</b><br>Theres no security camera here.").openPopup();
 }
 
 
@@ -90,12 +90,12 @@ function loadClicked() {
 function drawNoCameraPin(lat, lng) {
     let no_camera = L.icon({
         iconUrl: 'img/nocamera.png',
-        iconSize: [21, 27],
-        iconAnchor: [11, 27],
-        popupAnchor: [-3, -76],
+        iconSize: [27, 36],
+        iconAnchor: [13.5, 36],
+        popupAnchor: [2, -36],
     });
     // L.marker([lat, lng], { icon: no_camera }).addTo(mymap);
-    let marker = L.marker([lat, lng], { icon: no_camera });
+    let marker = L.marker([lat, lng], { icon: no_camera }).bindPopup(`This station doesn't have secuirty cameras.`);
     marker.addTo(cameraPins);
 }
 

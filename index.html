@@ -16,20 +16,23 @@
 </head>
 
 <body>
-  <div class='page'>
-    <div id="title">
-      <h1>WANT FREE TICKETS?</h1>
-      <h3>Check out the map to see which stations don't have security cameras.</h3>
-    </div>
-    <div id="map-container">
-      <input type="checkbox" id="edit"><i class="fas fa-edit"></i>
-      <input type="checkbox" id="create"><i class="fas fa-plus"></i>
-      <button id="saveButton">SAVE</button>
-      <button id="loadButton">LOAD</button>
-      <div id="mapid"></div>
-      <!-- <iframe src="https://www.google.com/maps/d/u/2/embed?mid=1skDmmUlPv9cQImUXQSoRFEli3qPClZZY"></iframe> -->
+  <div id="outer-container">
+    <div id="mid-container">
+      <div id='inner-container'>
+        <div id="title">
+          <h1>WANT FREE TICKETS ?</h1>
+        </div>
+        <div id="mapid"></div>
+        <div id="button-container">
+          <input type="checkbox" id="edit"><i class="fas fa-trash-alt"></i>
+          <input type="checkbox" id="create"><i class="fas fa-map-pin"></i>
+          <button id="saveButton"><i class="fas fa-save"></i></button>
+          <button id="loadButton"><i class="fas fa-file-download"></i></button>
+        </div>
+      </div>
     </div>
   </div>
+  <h3>Check out the map to see which stations don't have security cameras.</h3>
   <script src="myScript.js"></script>
 </body>
 
