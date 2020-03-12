@@ -52,16 +52,8 @@ h1{
   border-radius: 85px 85px 0 0;
 }
 
-h1:hover{
-  font-size: 0;
-}
-h1:hover::before{
-  font-size: 30px;
-  content: attr(data-hover);
-}
-
 #mapid {
-  height: 400px; 
+  height: 420px; 
   width:100%;
   margin: auto auto;
   border-radius:0 0 90px 90px;
