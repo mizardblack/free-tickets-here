@@ -30,7 +30,7 @@ var marker = L.marker([40.700065, -73.950176]).addTo(mymap)
 marker.bindPopup("<b>Flushing Ave</b><br>Theres no security camera here.").openPopup();
 */
 
-var mymap = L.map('mapid');
+var mymap = L.map('mapid', { scrollWheelZoom: false });
 var cameraPins = L.layerGroup().addTo(mymap);
 var copsPins = L.layerGroup().addTo(mymap);
 var copsLocations = [];
