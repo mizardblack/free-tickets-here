@@ -32,6 +32,8 @@ marker.bindPopup("<b>Flushing Ave</b><br>Theres no security camera here.").openP
 
 var mymap = L.map('mapid');
 var cameraPins = L.layerGroup().addTo(mymap);
+var copsPins = L.layerGroup().addTo(mymap);
+var copsLocations = [];
 var cameraLocations = [];
 
 // function popupMessageText() {
@@ -75,18 +77,13 @@ function setupMap() {
 }
 
 
-//create clearAll button
-L.easyButton('fas fa-trash-alt', function () {
-    clearAll();
-}).addTo(mymap);
-
-//creat addPin button
-var toggle = L.easyButton({
+//creat addNOCameraPin button
+var camera_toggle = L.easyButton({
     states: [{
         stateName: 'off',
         icon: 'fas fa-map-pin fa-lg',
         title: 'inactive adding pins',
-        id: 'createPinToggle',
+        id: 'createNoCameraPinToggle',
         onClick: function () {
             this.state('on');
             this.button.style.color = "red";
@@ -101,14 +98,48 @@ var toggle = L.easyButton({
         }
     }]
 });
-toggle.addTo(mymap);
+camera_toggle.addTo(mymap);
+
+//creat addCopsOnDutyPin button
+var cops_toggle = L.easyButton({
+    states: [{
+        stateName: 'off',
+        icon: 'fas fa-user-secret fa-lg',
+        title: 'inactive adding pins',
+        id: 'createCopsOnDutyToggle',
+        onClick: function () {
+            this.state('on');
+            this.button.style.color = "red";
+        }
+    }, {
+        stateName: 'on',
+        icon: 'fas fa-user-secret fa-lg',
+        title: 'active adding pins',
+        onClick: function () {
+            this.button.style.color = "grey";
+            this.state('off');
+        }
+    }]
+});
+cops_toggle.addTo(mymap);
+
+//create clearAll button
+L.easyButton('fas fa-trash-alt', function () {
+    clearAll();
+}).addTo(mymap);
 
 
 function mapClicked(e) {
-    if (toggle.state() == 'on') {
-        console.log(e.latlng, toggle.state());
+    if (camera_toggle.state() == 'on') {
+        console.log(e.latlng, camera_toggle.state());
         drawNoCameraPin(e.latlng.lat, e.latlng.lng);
         cameraLocations.push({ lat: e.latlng.lat, lng: e.latlng.lng });
+        save();
+    }
+    if (cops_toggle.state() == 'on') {
+        console.log(e.latlng, cops_toggle.state());
+        drawCopsPin(e.latlng.lat, e.latlng.lng);
+        copsLocations.push({ lat: e.latlng.lat, lng: e.latlng.lng });
         save();
     }
 }
@@ -116,14 +147,19 @@ function mapClicked(e) {
 
 function save() {
     localStorage.setItem("freetickets.cameraLocations", JSON.stringify(cameraLocations));
+    localStorage.setItem("freetickets.copsLocations", JSON.stringify(copsLocations));
 }
 
 function load() {
 
     // load from storage
-    let rawStorage = localStorage.getItem("freetickets.cameraLocations");
-    if (rawStorage != null) {
-        cameraLocations = JSON.parse(rawStorage);
+    let rawStorage_camera = localStorage.getItem("freetickets.cameraLocations");
+    let rawStorage_cops = localStorage.getItem("freetickets.copsLocations");
+    if (rawStorage_camera != null) {
+        cameraLocations = JSON.parse(rawStorage_camera);
+    }
+    if (rawStorage_cops != null) {
+        cameraLocations = JSON.parse(rawStorage_cops);
     }
 
     drawEachPin();
@@ -133,12 +169,13 @@ function load() {
 function clearAll() {
     if (confirm(`Are you sure that you wanna clear all the pins?`)) {
         cameraLocations = [];
+        copsLocations = [];
         drawEachPin();
         save();
     }
 }
 
-/** Draw pin on map. */
+/** Draw camera pin on map. */
 function drawNoCameraPin(lat, lng) {
     let no_camera = L.icon({
         iconUrl: 'img/nocamera.png',
@@ -150,17 +187,33 @@ function drawNoCameraPin(lat, lng) {
     let marker = L.marker([lat, lng], { icon: no_camera }).bindPopup(lookupText("popup-text"));
     marker.addTo(cameraPins);
 }
+/** Draw cops pin on map. */
+function drawCopsPin(lat, lng) {
+    let copsOnDuty = L.icon({
+        iconUrl: 'img/copsOnDuty.svg',
+        iconSize: [27, 36],
+        iconAnchor: [13.5, 36],
+        popupAnchor: [2, -36],
+    });
+    let marker = L.marker([lat, lng], { icon: copsOnDuty }).bindPopup(lookupText("popup-text"));
+    marker.addTo(copsPins);
+}
 
-// draw all camera pins on map (update interface)
+
+// draw all pins on map (update interface)
 function drawEachPin() {
     // clear existing camera pins displayed on map
     cameraPins.clearLayers();
+    copsPins.clearLayers();
 
     // for (let i = 0; i <= cameraLocations.length; i++) {
     //     const loc = cameraLocations[i];
     // }
     for (const loc of cameraLocations) {
         drawNoCameraPin(loc.lat, loc.lng);
+    }
+    for (const loc of copsLocations) {
+        drawCopsPin(loc.lat, loc.lng);
     }
 }
 
