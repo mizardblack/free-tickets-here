@@ -146,20 +146,20 @@ function mapClicked(e) {
 
 
 function save() {
-    localStorage.setItem("freetickets.cameraLocations", JSON.stringify(cameraLocations));
-    localStorage.setItem("freetickets.copsLocations", JSON.stringify(copsLocations));
+    localStorage.setItem("PAYNOFARE.cameraLocations", JSON.stringify(cameraLocations));
+    localStorage.setItem("PAYNOFARE.copsLocations", JSON.stringify(copsLocations));
 }
 
 function load() {
 
     // load from storage
-    let rawStorage_camera = localStorage.getItem("freetickets.cameraLocations");
-    let rawStorage_cops = localStorage.getItem("freetickets.copsLocations");
+    let rawStorage_camera = localStorage.getItem("PAYNOFARE.cameraLocations");
+    let rawStorage_cops = localStorage.getItem("PAYNOFARE.copsLocations");
     if (rawStorage_camera != null) {
         cameraLocations = JSON.parse(rawStorage_camera);
     }
     if (rawStorage_cops != null) {
-        cameraLocations = JSON.parse(rawStorage_cops);
+        copsLocations = JSON.parse(rawStorage_cops);
     }
 
     drawEachPin();
