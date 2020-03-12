@@ -81,7 +81,7 @@ h1:hover::before{
 
 footer{
   margin: 100px -20px -10px -20px;
-  padding: 100px 100px 20px 100px;
+  padding: 50px 100px;
   background-color: rgb(184, 184, 184);
   /* display: block; */
 }
