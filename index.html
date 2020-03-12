@@ -22,7 +22,8 @@
     <div id="mid-container">
       <div id='inner-container'>
         <div id="title">
-          <h1 data-hover="check out the map to see which stations DO NOT HAVE SECURITY CAMERAS.">YOU ARE BEING WATCHED
+          <h1 data-hover="check out the map to see which stations DO NOT HAVE SECURITY CAMERAS.">
+            YOU ARE BEING WATCHED
           </h1>
         </div>
         <div id="mapid">
@@ -30,7 +31,23 @@
       </div>
     </div>
   </div>
-  <h3>Check out the map to see which stations don't have security cameras.</h3>
+
+  <i class="fas fa-sort-down fa-5x" id="icon_down"></i>
+
+  <div id="instruction">
+
+    <h3>Instruction:</h3>
+    <ol>Check out the map to see which stations don't have security cameras.</ol>
+    <ol>Click on <i class="fas fa-map-pin"></i> to add pins.
+      ( <i class="fas fa-map-pin" style="color:red"></i> = on;
+      <i class="fas fa-map-pin" style="color:grey"></i> = off.)
+    </ol>
+    <ol>Click on <i class="fas fa-trash-alt"></i> to clear all pins.</ol>
+
+    <h3>Pins:</h3>
+    <ol><img src="img/nocamera.png" style="height:30px;width:auto"> no security camers</ol>
+    <ol><img src="img/copsOnDuty.svg" style="height:30px;width:auto"> cops on duty</ol>
+  </div>
   <script src="myScript.js"></script>
 </body>
 

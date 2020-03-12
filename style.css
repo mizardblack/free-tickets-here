@@ -1,11 +1,19 @@
-  
-*{
-    font-family: chesstype;
+@font-face {
+  font-family: 'chesstype';
+  src: url('fonts/chesstype-webfont.woff2') format('woff2'),
+        url('fonts/chesstype-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
+ 
+/* *{
+    font-family: chesstype;
+} */
 body{
   background-color: rgb(221, 221, 221);
   border:20px;
   padding:10px 20px;
+  font-family: chesstype;
 }
 #inner-container{
   margin:40px 40px;
@@ -27,19 +35,12 @@ body{
   border-radius: 95px;
   background-color: rgb(180, 180, 180);
 }
-/* iframe{
-  background-color: black;
-  margin-left: 20px;
-  height:700px;
-  width:90%;
-} */
 
 #button-container{
   position: absolute;
   top:220px;
   left:130px;
 }
-
 
 h1{
   font-size: 45px;
@@ -59,10 +60,6 @@ h1:hover::before{
   content: attr(data-hover);
 }
 
-h3{
-  margin: 20px 0;
-}
-
 #mapid {
   height: 400px; 
   width:100%;
@@ -72,10 +69,12 @@ h3{
   z-index: 0;
 }
 
-@font-face {
-  font-family: 'chesstype';
-  src: url('fonts/chesstype-webfont.woff2') format('woff2'),
-        url('fonts/chesstype-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+#icon_down{
+  margin-top:-10px;
+  text-align: center;
+  width:100%;
+}
+
+#instruction{
+  margin: 0px 100px 20px 100px !important;
 }
