@@ -78,3 +78,10 @@ h1:hover::before{
 #instruction{
   margin: 0px 100px 20px 100px !important;
 }
+
+footer{
+  margin: 100px -20px -10px -20px;
+  padding: 100px 100px 20px 100px;
+  background-color: rgb(184, 184, 184);
+  /* display: block; */
+}
