@@ -77,3 +77,8 @@ footer{
   background-color: rgb(184, 184, 184);
   /* display: block; */
 }
+
+ul{
+  list-style-type: none;
+  line-height: 2em;
+}
