@@ -167,6 +167,7 @@ function load() {
     drawEachPin();
 
     drawCopsPin(40.734641, -73.990259);//USQ
+    drawCopsPin(40.71785916529029, -73.95772933959962);//Bedford Ave
     drawCopsPin(40.75533582905459, -73.98746967315675);//42-Time Sq
     drawNoCameraPin(40.75717253693376, -73.97191286087038)//51 St
     drawNoCameraPin(40.74637911942415, -73.98189067840578);//33rd St
@@ -175,6 +176,7 @@ function load() {
     drawNoCameraPin(40.706864174917996, -73.95335197448732);//Hewes St
     drawNoCameraPin(40.705530339593395, -73.95021915435792);//Broadway
     drawNoCameraPin(40.70035740846065, -73.94116401672365);//Flushing Ave
+    drawNoCameraPin(40.75401921961654, -73.94253730773927);//21 St-Queen's Brdg
 }
 
 //clear all pins
@@ -228,6 +230,7 @@ function drawEachPin() {
         drawCopsPin(loc.lat, loc.lng);
     }
 }
+
 
 setupMap();
 load();
