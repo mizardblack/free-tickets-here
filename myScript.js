@@ -46,11 +46,13 @@ var cameraLocations = [];
 const textPhrases = {
     "zh": {
         "delete-prompt": "爱上",
-        "popup-text": "这个地铁站没有监控摄像头。"
+        "popup-text-camera": "这个地铁站没有监控摄像头。",
+        "popup-text-cops": "这个地铁站有执勤警察。"
     },
     "en": {
         "delete-prompt": "foo",
-        "popup-text": "This station doesn't have security cameras."
+        "popup-text": "This station doesn't have security cameras.",
+        "popup-text-cops": "There are cops on duty in this station."
     }
 }
 
@@ -195,7 +197,7 @@ function drawCopsPin(lat, lng) {
         iconAnchor: [13.5, 36],
         popupAnchor: [2, -36],
     });
-    let marker = L.marker([lat, lng], { icon: copsOnDuty }).bindPopup(lookupText("popup-text"));
+    let marker = L.marker([lat, lng], { icon: copsOnDuty }).bindPopup(lookupText("popup-text-cops"));
     marker.addTo(copsPins);
 }
 
