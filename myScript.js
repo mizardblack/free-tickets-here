@@ -82,7 +82,7 @@ var camera_toggle = L.easyButton({
     states: [{
         stateName: 'off',
         icon: 'fas fa-map-pin fa-lg',
-        title: 'adding No-camera pins',
+        title: 'add No-camera pins',
         id: 'createNoCameraPinToggle',
         onClick: function () {
             this.state('on');
