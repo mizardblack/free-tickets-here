@@ -43,22 +43,53 @@ var cameraLocations = [];
 //     return `This station doesn't have security cameras.`;
 // }
 
+//translation
 const textPhrases = {
     "zh": {
-        "delete-prompt": "爱上",
+        "delete-prompt": "确定清除所有标记吗？",
         "popup-text-camera": "这个地铁站没有监控摄像头。",
-        "popup-text-cops": "这个地铁站有执勤警察。"
+        "popup-text-cops": "这个地铁站有执勤警察。",
+        "main_title": "NYC 不买票",
+        "instruction_title": "使用指南",
+        "i_1": "查看地图获取地铁站安保情况。",
+        "i_2": "点击 <i class='fas fa-map-pin'></i>  添加‘无摄像头’标记。 ( <i class= 'fas fa-map-pin' style='color:red' ></i> = 标记; <i class='fas fa-map-pin' style='color:grey'></i> = 不标记.)",
+        "i_3": "点击 <i class='fas fa-user-secret'></i>  添加‘警察执勤’标记。 ( <i class= 'fas fa-user-secret' style='color:red' ></i> = 标记; <i class='fas fa-user-secret' style='color:grey'></i> = 不标记.)",
+        "i_4": "点击 <i class='fas fa-trash-alt'></i> 清除所有标记。",
+        "pins_title": "标记",
+        "p_1": " 无监控摄像头",
+        "p_2": " 警察执勤"
     },
     "en": {
         "delete-prompt": "foo",
-        "popup-text": "This station doesn't have security cameras.",
-        "popup-text-cops": "There are cops on duty in this station."
+        "popup-text-camera": "This station doesn't have security cameras.",
+        "popup-text-cops": "There are cops on duty in this station.",
+        "main_title": "PAY NO FARE NYC",
+        "instruction_title": "INSTRUCTION",
+        "i_1": "check out the map to see train stations security situations.",
+        "i_2": "click on <i class='fas fa-map-pin'></i> to add NOCAMERA pins. ( <i class= 'fas fa-map-pin' style='color:red' ></i> = on; <i class='fas fa-map-pin' style='color:grey'></i> = off.) ",
+        "i_3": "click on <i class='fas fa-user-secret'></i> to add COPSONDUTY pins. ( <i class= 'fas fa-user-secret' style='color:red' ></i> = on; <i class='fas fa-user-secret' style='color:grey'></i> = off.) ",
+        "i_4": "click on <i class='fas fa-trash-alt'></i> to clear all pins.",
+        "pins_title": "PINS",
+        "p_1": " no security camers",
+        "p_2": " cops on duty"
     }
 }
 
 function lookupText(key) {
     let lang = navigator.language.split("-")[0]; // get language code without region
     return textPhrases[lang][key];
+}
+
+function fillHTMLText() {
+    document.getElementById("main_title").innerHTML = lookupText("main_title");
+    document.getElementById("instruction_title").innerHTML = lookupText("instruction_title");
+    document.getElementById("i_1").innerHTML = lookupText("i_1");
+    document.getElementById("i_2").innerHTML = lookupText("i_2");
+    document.getElementById("i_3").innerHTML = lookupText("i_3");
+    document.getElementById("i_4").innerHTML = lookupText("i_4");
+    document.getElementById("pins_title").innerHTML = lookupText("pins_title");
+    document.getElementById("p_1").innerHTML = lookupText("p_1");
+    document.getElementById("p_2").innerHTML = lookupText("p_2");
 }
 
 // set up initial map state
@@ -198,7 +229,7 @@ function drawNoCameraPin(lat, lng) {
         popupAnchor: [2, -36],
     });
     // L.marker([lat, lng], { icon: no_camera }).addTo(mymap);
-    let marker = L.marker([lat, lng], { icon: no_camera }).bindPopup(lookupText("popup-text"));
+    let marker = L.marker([lat, lng], { icon: no_camera }).bindPopup(lookupText("popup-text-camera"));
     marker.addTo(cameraPins);
 }
 /** Draw cops pin on map. */
@@ -231,7 +262,8 @@ function drawEachPin() {
     }
 }
 
-
 setupMap();
 load();
+fillHTMLText();
+
 

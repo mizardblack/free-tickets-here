@@ -25,11 +25,9 @@
   <div id="outer-container">
     <div id="mid-container">
       <div id='inner-container'>
-        <div id="title">
-          <h1>
-            PAY NO FARE NYC
-          </h1>
-        </div>
+        <h1 id="main_title">
+          ///
+        </h1>
         <div id="mapid">
         </div>
       </div>
@@ -38,17 +36,19 @@
 
   <i class="fas fa-sort-down fa-5x" id="icon_down"></i>
 
-  <div id="instruction">
-    <h3>INSTRUCTION</h3>
-    <ol>Check out the map to see which stations don't have security cameras.</ol>
-    <ol>Click on <i class="fas fa-map-pin"></i> to add pins.
-      ( <i class="fas fa-map-pin" style="color:red"></i> = on;
-      <i class="fas fa-map-pin" style="color:grey"></i> = off.)
-    </ol>
-    <ol>Click on <i class="fas fa-trash-alt"></i> to clear all pins.</ol>
-    <h3>PINS</h3>
-    <ol><img src="img/nocamera.png" style="height:30px;width:auto"> no security camers</ol>
-    <ol><img src="img/copsOnDuty.svg" style="height:30px;width:auto"> cops on duty</ol>
+  <div id="instruction_container">
+    <h3 id="instruction_title"></h3>
+    <ul>
+      <li id="i_1">check out the map to see train stations security situations.</li>
+      <li id="i_2">click on <i class='fas fa-map-pin'></i> to add NOCAMERA pins.</li>
+      <li id="i_3">click on <i class='fas fa-user-secret'></i> to add COPSONDUTY pins.</li>
+      <li id="i_4">click on <i class='fas fa-trash-alt'></i> to clear all pins.</li>
+    </ul>
+    <h3 id="pins_title"></h3>
+    <ul>
+      <li><img src='img/nocamera.png' style='height:30px;width:auto'> <span id="p_1"> no security camers</span></li>
+      <li><img src="img/copsOnDuty.svg" style="height:30px;width:auto"><span id="p_2"> cops on duty</span></li>
+    </ul>
   </div>
 
   <footer class="page-footer">
