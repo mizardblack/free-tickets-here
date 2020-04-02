@@ -82,7 +82,7 @@ var camera_toggle = L.easyButton({
     states: [{
         stateName: 'off',
         icon: 'fas fa-map-pin fa-lg',
-        title: 'inactive adding pins',
+        title: 'adding No-camera pins',
         id: 'createNoCameraPinToggle',
         onClick: function () {
             this.state('on');
@@ -91,7 +91,7 @@ var camera_toggle = L.easyButton({
     }, {
         stateName: 'on',
         icon: 'fas fa-map-pin fa-lg',
-        title: 'active adding pins',
+        title: 'inactive adding pins',
         onClick: function () {
             this.button.style.color = "grey";
             this.state('off');
@@ -105,7 +105,7 @@ var cops_toggle = L.easyButton({
     states: [{
         stateName: 'off',
         icon: 'fas fa-user-secret fa-lg',
-        title: 'inactive adding pins',
+        title: 'add Cops-on-duty pins',
         id: 'createCopsOnDutyToggle',
         onClick: function () {
             this.state('on');
@@ -114,7 +114,7 @@ var cops_toggle = L.easyButton({
     }, {
         stateName: 'on',
         icon: 'fas fa-user-secret fa-lg',
-        title: 'active adding pins',
+        title: 'inactive adding pins',
         onClick: function () {
             this.button.style.color = "grey";
             this.state('off');
